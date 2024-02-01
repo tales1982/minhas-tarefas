@@ -4,26 +4,20 @@ const tarefas = [
   {
     titulo: 'Controlar maquinas',
     descricao: 'controlas as horas das maquinas',
-    prioridade: 'importatnte',
+    prioridade: 'urgente',
     status: 'pendente'
   },
   {
     titulo: 'Sopinor',
     descricao: 'Controlar vio50',
-    prioridade: 'importatnte',
-    status: 'pendente'
+    prioridade: 'urgente',
+    status: 'concluida'
   },
   {
     titulo: 'Poeckes',
     descricao: 'prepara terex',
-    prioridade: 'importatnte',
-    status: 'pendente'
-  },
-  {
-    titulo: 'Mecanicos',
-    descricao: 'Fazer revisao nas maquinas',
-    prioridade: 'Urgente',
-    status: 'concluido'
+    prioridade: 'importante',
+    status: 'concluida'
   }
 ]
 
