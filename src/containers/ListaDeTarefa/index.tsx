@@ -1,44 +1,38 @@
+import { useSelector } from 'react-redux'
 import Tarefa from '../componets/Tarefa'
 import { Container } from './styles'
-import * as enums from '../utils/enums/Tarefa'
+import { RootReducer } from '../../store'
 
-const tarefas = [
-  {
-    titulo: 'Controlar maquinas',
-    descricao: 'controlas as horas das maquinas',
-    prioridade: enums.Prioridade.URGENTE,
-    status: enums.Status.PENDENTE
-  },
-  {
-    titulo: 'Sopinor',
-    descricao: 'Controlar vio50',
-    prioridade: enums.Prioridade.URGENTE,
-    status: enums.Status.CONCLUIDA
-  },
-  {
-    titulo: 'Poeckes',
-    descricao: 'prepara terex',
-    prioridade: enums.Prioridade.IMPORTANTE,
-    status: enums.Status.CONCLUIDA
+const ListaDeTarefas = () => {
+  const { itens } = useSelector((state: RootReducer) => state.tarefas)
+  const { termo } = useSelector((state: RootReducer) => state.filtro)
+
+  const filtraTarefas = () => {
+    return itens.filter(
+      (item) => item.titulo.toLowerCase().search(termo.toLocaleLowerCase()) >= 0
+    )
   }
-]
 
-const ListaDeTarefas = () => (
-  <Container>
-    <p>2 tarefas marcadas como: &quot;categoria&ldquo; e &quot;termo&ldquo;</p>
-    <ul>
-      {tarefas.map((t) => (
-        <li key={t.titulo}>
-          <Tarefa
-            titulo={t.titulo}
-            descricao={t.descricao}
-            prioridade={t.prioridade}
-            status={t.status}
-          />
-        </li>
-      ))}
-    </ul>
-  </Container>
-)
+  return (
+    <Container>
+      <p>
+        2 tarefas marcadas como: &quot;categoria&ldquo; e &quot;{termo}&ldquo;
+      </p>
+      <ul>
+        {filtraTarefas().map((t) => (
+          <li key={t.titulo}>
+            <Tarefa
+              id={t.id}
+              titulo={t.titulo}
+              descricao={t.descricao}
+              prioridade={t.prioridade}
+              status={t.status}
+            />
+          </li>
+        ))}
+      </ul>
+    </Container>
+  )
+}
 
 export default ListaDeTarefas
