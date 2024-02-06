@@ -9,7 +9,7 @@ type Props = TarefaClass
 
 const Tarefa = ({
   descricao: descricaoOriginal,
-  prioridade,
+  priorité,
   status,
   titulo,
   id
@@ -31,8 +31,8 @@ const Tarefa = ({
   return (
     <S.Card>
       <S.Titulo>{titulo}</S.Titulo>
-      <S.Tag parametro="prioridade" prioridade={prioridade}>
-        {prioridade}
+      <S.Tag parametro="priorité" priorité={priorité}>
+        {priorité}
       </S.Tag>
       <S.Tag parametro="status" status={status}>
         {status}
@@ -50,7 +50,7 @@ const Tarefa = ({
                 dispatch(
                   editar({
                     descricao,
-                    prioridade,
+                    priorité,
                     status,
                     titulo,
                     id
@@ -59,17 +59,17 @@ const Tarefa = ({
                 setEstaEditando(false)
               }}
             >
-              Salvar
+              Sauver
             </S.BotaoSalva>
             <S.BotaoCancelarRemover onClick={cancelarEdicao}>
-              Cancelar
+              Annuler
             </S.BotaoCancelarRemover>
           </>
         ) : (
           <>
-            <S.Botao onClick={() => setEstaEditando(true)}>Editar</S.Botao>
+            <S.Botao onClick={() => setEstaEditando(true)}>Éditer</S.Botao>
             <S.BotaoCancelarRemover onClick={() => dispatch(remover(id))}>
-              Remover
+              Supprimer
             </S.BotaoCancelarRemover>
           </>
         )}

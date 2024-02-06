@@ -3,13 +3,13 @@ import * as enums from '../../containers/utils/enums/Tarefa'
 
 type FiltroState = {
   termo?: string
-  criterio: 'prioridade' | 'status' | 'todas'
+  criterio: 'priorité' | 'status' | 'tous'
   valor?: enums.Prioridade | enums.Status
 }
 
 const initialState: FiltroState = {
   termo: '',
-  criterio: 'todas'
+  criterio: 'tous'
 }
 
 const filtroSlice = createSlice({

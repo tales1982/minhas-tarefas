@@ -14,7 +14,7 @@ const BarraLateral = () => {
       <div>
         <S.Campo
           type="text"
-          placeholder="Busca"
+          placeholder="Recherche"
           value={termo}
           onChange={(evento) => dispatch(alterarTermo(evento.target.value))}
         />
@@ -22,29 +22,29 @@ const BarraLateral = () => {
           <FiltroCard
             valor={enums.Status.PENDENTE}
             criterio="status"
-            legenda="Pedentes"
+            legenda="En attente"
           />
           <FiltroCard
             valor={enums.Status.CONCLUIDA}
             criterio="status"
-            legenda="Concluidas"
+            legenda="Complété"
           />
           <FiltroCard
             valor={enums.Prioridade.URGENTE}
-            criterio="prioridade"
-            legenda="Urgentes"
+            criterio="priorité"
+            legenda="Urgent"
           />
           <FiltroCard
             valor={enums.Prioridade.IMPORTANTE}
-            criterio="prioridade"
-            legenda="Importantes"
+            criterio="priorité"
+            legenda="Important"
           />
           <FiltroCard
             valor={enums.Prioridade.NORMAL}
-            criterio="prioridade"
+            criterio="priorité"
             legenda="Normal"
           />
-          <FiltroCard criterio="todas" legenda="Todas" />
+          <FiltroCard criterio="tous" legenda="Tous" />
         </S.Filtros>
       </div>
     </S.Aside>

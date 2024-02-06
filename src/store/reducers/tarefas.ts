@@ -11,21 +11,21 @@ const initialState: TarefasState = {
     {
       id: 1,
       descricao: 'Estuda JavaScript rever os exercicios',
-      prioridade: enums.Prioridade.IMPORTANTE,
+      priorité: enums.Prioridade.IMPORTANTE,
       status: enums.Status.PENDENTE,
       titulo: 'JavaScript'
     },
     {
       id: 2,
       descricao: 'Estuda React par prova',
-      prioridade: enums.Prioridade.NORMAL,
+      priorité: enums.Prioridade.NORMAL,
       status: enums.Status.CONCLUIDA,
       titulo: 'React'
     },
     {
       id: 3,
       descricao: 'Java rever os exercicios',
-      prioridade: enums.Prioridade.URGENTE,
+      priorité: enums.Prioridade.URGENTE,
       status: enums.Status.PENDENTE,
       titulo: 'Java'
     }
