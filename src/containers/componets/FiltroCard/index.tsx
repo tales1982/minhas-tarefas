@@ -3,7 +3,6 @@ import * as S from './styles'
 import { alterarFiltro } from '../../../store/reducers/filtro'
 import * as enums from '../../utils/enums/Tarefa'
 import { RootReducer } from '../../../store'
-import tarefas from '../../../store/reducers/tarefas'
 
 export type Props = {
   legenda: string
@@ -25,7 +24,7 @@ const FiltroCard = ({ legenda, criterio, valor }: Props) => {
   const contarTarefas = () => {
     if (criterio === 'tous') return tarefas.itens.length
     if (criterio === 'priorité') {
-      return tarefas.itens.filter((item) => item.priorité === valor).length
+      return tarefas.itens.filter((item) => item.prioridade === valor).length
     }
     if (criterio === 'status') {
       return tarefas.itens.filter((item) => item.status === valor).length

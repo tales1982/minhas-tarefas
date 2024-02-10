@@ -7,29 +7,7 @@ type TarefasState = {
 }
 
 const initialState: TarefasState = {
-  itens: [
-    {
-      id: 1,
-      descricao: 'Estuda JavaScript rever os exercicios',
-      priorité: enums.Prioridade.IMPORTANTE,
-      status: enums.Status.PENDENTE,
-      titulo: 'JavaScript'
-    },
-    {
-      id: 2,
-      descricao: 'Estuda React par prova',
-      priorité: enums.Prioridade.NORMAL,
-      status: enums.Status.CONCLUIDA,
-      titulo: 'React'
-    },
-    {
-      id: 3,
-      descricao: 'Java rever os exercicios',
-      priorité: enums.Prioridade.URGENTE,
-      status: enums.Status.PENDENTE,
-      titulo: 'Java'
-    }
-  ]
+  itens: []
 }
 
 const tarefasSlice = createSlice({
@@ -50,7 +28,7 @@ const tarefasSlice = createSlice({
         state.itens[indexDaTarefa] = action.payload
       }
     },
-    cadastrar: (state, action: PayloadAction<Tarefa>) => {
+    cadastrar: (state, action: PayloadAction<Omit<Tarefa, 'id'>>) => {
       const tarefaJaExiste = state.itens.find(
         (tarefa) =>
           tarefa.titulo.toLowerCase() === action.payload.titulo.toLowerCase()
@@ -59,12 +37,32 @@ const tarefasSlice = createSlice({
       if (tarefaJaExiste) {
         alert('Il existe déjà une tâche portant ce nom')
       } else {
-        state.itens.push(action.payload)
+        const ultimaTarefa = state.itens[state.itens.length - 1]
+
+        const tarefaNova = {
+          ...action.payload,
+          id: ultimaTarefa ? ultimaTarefa.id + 1 : 1
+        }
+        state.itens.push(tarefaNova)
+      }
+    },
+    alteraStatus: (
+      state,
+      action: PayloadAction<{ id: number; finalizado: boolean }>
+    ) => {
+      const indexDaTarefa = state.itens.findIndex(
+        (t) => t.id === action.payload.id
+      )
+
+      if (indexDaTarefa >= 0) {
+        state.itens[indexDaTarefa].status = action.payload.finalizado
+          ? enums.Status.CONCLUIDA
+          : enums.Status.PENDENTE
       }
     }
   }
 })
 
-export const { remover, editar, cadastrar } = tarefasSlice.actions
+export const { remover, editar, cadastrar, alteraStatus } = tarefasSlice.actions
 
 export default tarefasSlice.reducer

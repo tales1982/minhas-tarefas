@@ -6,7 +6,6 @@ import { BotaoSalva, MainContainer, Titulo } from '../../styles'
 import { Campo } from '../../styles'
 import { Form, Opcoes, Opcao } from './styles'
 import * as enums from '../../containers/utils/enums/Tarefa'
-import Tarefa from '../../models/Tarefas'
 import { cadastrar } from '../../store/reducers/tarefas'
 
 const Formulario = () => {
@@ -14,18 +13,19 @@ const Formulario = () => {
   const navigate = useNavigate()
   const [titulo, setTitulo] = useState('')
   const [descricao, setDescricao] = useState('')
-  const [prioridade, SetPrioridade] = useState(enums.Prioridade.NORMAL)
+  const [prioridade, setPrioridade] = useState(enums.Prioridade.NORMAL)
 
   const cadastraTarefa = (evento: FormEvent) => {
     evento.preventDefault()
-    const tarefaParaAdicionar = new Tarefa(
-      titulo,
-      prioridade,
-      enums.Status.PENDENTE,
-      descricao,
-      9
+
+    dispatch(
+      cadastrar({
+        titulo,
+        prioridade,
+        descricao,
+        status: enums.Status.PENDENTE
+      })
     )
-    dispatch(cadastrar(tarefaParaAdicionar))
     navigate('/')
   }
 
@@ -54,7 +54,7 @@ const Formulario = () => {
                 name="prioridade"
                 type="radio"
                 onChange={(evento) =>
-                  SetPrioridade(evento.target.value as enums.Prioridade)
+                  setPrioridade(evento.target.value as enums.Prioridade)
                 }
                 id={prioridade}
                 defaultChecked={prioridade === enums.Prioridade.NORMAL}

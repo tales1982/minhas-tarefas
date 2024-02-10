@@ -19,7 +19,7 @@ const ListaDeTarefas = () => {
 
       if (criterio === 'priorité') {
         tarefasFiltradas = tarefasFiltradas.filter(
-          (item) => item.priorité === valor
+          (item) => item.prioridade === valor
         )
       } else if (criterio === 'status') {
         tarefasFiltradas = tarefasFiltradas.filter(
@@ -58,7 +58,7 @@ const ListaDeTarefas = () => {
               id={t.id}
               titulo={t.titulo}
               descricao={t.descricao}
-              priorité={t.priorité}
+              prioridade={t.prioridade}
               status={t.status}
             />
           </li>
